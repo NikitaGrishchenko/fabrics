@@ -2,14 +2,61 @@
 @import "login.css";
 @import "registration.css";
 
+@font-face {
+  font-family: "P131";
+  src: url("../fonts/ofont.ru_P131.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  }
+
 body {
-  /* font-family: 'Montserrat', sans-serif; */
+  font-family: 'Roboto', sans-serif;
   font-weight: 400;
   font-size: 16px;
 }
+.navbar-section {
+  background-color: #080A07;
+  height: 120px;
+}
 
-.account, .index, .registration, .news-detail, .news-list, .meter-readings, .tariff, .survey-list, .survey-detail, .calling-wizard, .calling-user {
-  padding-top: 100px;
+.navbar-section__img{
+  height: 67px;
+}
+
+.drawer-toggle{
+  cursor: pointer;
+}
+
+.beginning-block{
+  background: rgba(35, 38, 35, 0.9);
+  margin-top: 180px;
+  margin-bottom: 30px;
+}
+
+.beginning-subtitle {
+  font-weight: 500;
+  font-size: 50px;
+  letter-spacing: 0.105em;
+  color: #FFFFFF;
+  margin-bottom: 230px;
+}
+
+.beginning-title{
+  font-family: "P131";
+  font-weight: 400;
+  font-size: 160px;
+  line-height: 134.97%;
+  letter-spacing: 0.105em;
+  color: #FFFFFF;
+}
+
+.beginning-arrow {
+  width: 100px;
+  margin-bottom: 140px;
+}
+
+.beginning{
+  background: url(../images/bg.png) 0 0/cover no-repeat;
 }
 
 
@@ -91,3 +138,5 @@ select {
     scroll-behavior: auto !important;
   }
 }
+
+

@@ -1,19 +1,17 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% comment %} {% block title %}
-!
-{% endblock title %} {% endcomment %}
+{% block title %}
+  Fabrique A
+{% endblock title %}
 
-{% block navbar %}
-  {% include 'include/navbar.html' %}
-{% endblock navbar %}
+{% block header %}
+  {% include 'include/header.html' %}
+{% endblock header %}
 
 {% block content %}
-  <div class="index">
-    {% comment %} {% include 'components/basic-information.html' %} {% endcomment %}
+  {% include 'components/beginning.html' %}
     {% comment %} {% gallery %} {% endcomment %}
-    !
 {% endblock content %}
 
 {% block footer %}

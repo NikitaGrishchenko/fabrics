@@ -1,0 +1,36 @@
+{% load static %}
+
+<section class="navbar-section">
+  <div class="container h-100">
+    <div class="row h-100 align-items-center">
+      <div class="col-6 d-flex">
+        <img class="drawer-toggle mr-5" src="{% static 'images/burger.svg' %}" alt="">
+        <a href="http://fabrique-a-models.com/">
+          <img src="{% static 'images/logo.png' %}" alt="">
+        </a>
+      </div>
+      <div class="col-6 d-flex justify-content-end align-items-center">
+        <div>
+          {% if not user.is_authenticated %}
+            <a class="nav-link" href="{% url 'user:account' %}">Личный кабинет</a>
+          {% endif %}
+        </div>
+        <div>
+          <img src="{% static 'images/user.svg' %}" class="navbar-section__img" alt="user-img">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<header role="banner">
+  <nav class="drawer-nav" role="navigation">
+    <ul class="drawer-menu">
+      <li><a class="drawer-brand" href="/">Главная</a></li>
+      {% comment %} <li><a class="drawer-menu-item" href="./top.html">Top</a></li>
+      <li><a class="drawer-menu-item" href="./index.html">Left</a></li>
+      <li><a class="drawer-menu-item" href="./right.html">Right</a></li> {% endcomment %}
+    </ul>
+  </nav>
+</header>
+

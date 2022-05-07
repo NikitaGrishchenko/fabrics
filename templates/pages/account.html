@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  Личный кабинет
+{% endblock title %}
+
+{% block header %}
+  {% include 'include/header.html' %}
+{% endblock header %}
+
+{% block content %}
+  <section class="account">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h1>Личный кабинет</h1>
+        </div>
+        <div class="col-12">
+          <p style="font-size: 20px" class="my-3 font-weight-bold">{{user.last_name}} {{user.first_name}} {{user.patronymic}}</p>
+        </div>
+        <div class="col-12 col-lg-4">
+          <p>Телефон: {{user.phone}}</p>
+        </div>
+        <div class="col-12 col-lg-4">
+          <p>E-mail: {{user.email}}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <p style="font-size: 20px" class="my-3 font-weight-bold">Информация о квартире</p>
+        </div>
+        <div class="col-12 col-lg-2">
+          <p>Номер: {{user.flat.number}}</p>
+        </div>
+        <div class="col-12 col-lg-2">
+          <p>Этаж: {{user.flat.floor}}</p>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-12 col-lg-3">
+          <p>Общая площадь: {{user.flat.total_area}} м²</p>
+        </div>
+        <div class="col-12 col-lg-3">
+          <p>Количество проживающих: {{user.flat.number_of_residents}} чел.</p>
+        </div>
+        <div class="col-12 mt-3 d-flex">
+          <p class="mr-2">Наличие подземного паркинга:</p>
+          {% if user.flat.availability_of_underground_parking %}
+            <img src="{% static 'images/check.svg' %}" alt="check">
+          {% else %}
+            <img src="{% static 'images/uncheck.svg' %}" alt="uncheck">
+          {% endif %}
+        </div>
+      </div>
+      <div class="row mt-5">
+        <div class="col-12">
+          <div class="btn-group-vertical btn-group-lg" role="group" aria-label="Basic example">
+            <button onclick="location.href='{% url 'users:meter-readings-page' %}'" type="button" class="btn main-btn">Отправить показания счетчиков</button>
+            <button onclick="location.href='{% url 'survey:list' %}'" type="button" class="btn main-btn">Опросы</button>
+            <button onclick="location.href='{% url 'users:calling-wizard' %}'" type="button" class="btn main-btn">Вызвать мастера</button>
+            <button onclick="location.href='{% url 'users:questions-user' %}'" type="button" class="btn main-btn">Задать вопрос</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock content %}
+
+
+

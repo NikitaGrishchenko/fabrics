@@ -1,0 +1,8 @@
+{% load static %}
+
+
+{% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'users:account' %}">Личный кабинет</a>
+          </li>
+        {% endif %}

@@ -190,8 +190,125 @@ select {
 
 .navbar-section .nav-link {
   color: #fff;
+  font-size: 20px;
+  letter-spacing: 0.105em;
 }
 .navbar-section .nav-link:hover {
   color: #fff;
   text-decoration: underline;
+}
+
+.about-platform {
+  background: #232322;
+  color: #fff;
+  padding: 100px 0;
+}
+
+.about-platform__title{
+  font-weight: 700;
+  font-size: 60px;
+  text-transform: uppercase;
+  letter-spacing: 0.105em;
+}
+
+.about-platform__banner{
+  border: 2px solid #fff;
+  text-align: center;
+  width: max-content;
+  font-size: 35px;
+  padding: 40px 70px;
+  margin-top: 115px;
+  letter-spacing: 0.105em;
+  margin-bottom: 100px;
+}
+
+.about-platform__banner:hover {
+  opacity: .7;
+}
+
+.about-platform-item{
+  display: flex;
+  align-items: center;
+  margin-bottom: 100px;
+}
+
+.about-platform-item__text{
+  font-size: 25px;
+  line-height: 134.97%;
+  letter-spacing: 0.105em;
+}
+
+.about-platform-item__img{
+  min-width: 90px;
+  max-width: 90px;
+}
+
+.about-fabrics{
+  background: url(../images/bg-about-fabrics.png) 0 0/cover no-repeat;
+  padding-top: 150px;
+}
+
+.about-fabrics .col-12{
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.about-fabrics__title{
+  font-family: "P131";
+  padding: 20px 0;
+  background: rgba(255, 255, 255, 0.2);
+  font-size: 100px;
+  letter-spacing: 0.105em;
+  color: #FFFFFF;
+  text-align: center;
+}
+
+.about-fabrics-case{
+  display: flex;
+  justify-content: center;
+  margin: 60px 40px;
+}
+
+.footer{
+  background:  #232322;
+  color: #fff;
+}
+
+.footer-title {
+  font-size: 30px;
+  line-height: 134.97%;
+  letter-spacing: 0.105em;
+  margin-top: 150px;
+  margin-bottom: 40px;
+}
+
+.footer-number, .footer-email{
+  font-weight: 300;
+  font-size: 30px;
+  line-height: 134.97%;
+  letter-spacing: 0.105em;
+  margin-bottom: 40px;
+}
+
+.footer-email{
+  color: #fff;
+  text-decoration: none;
+}
+.footer-email:hover{
+  color: #fff;
+  text-decoration: none;
+}
+
+
+.footer-lk a{
+  font-size: 30px;
+  line-height: 134.97%;
+  letter-spacing: 0.105em;
+  text-decoration: none;
+  color: #fff;
+  margin-bottom: 120px;
+}
+
+.footer-logo{
+  padding-bottom: 70px;
 }

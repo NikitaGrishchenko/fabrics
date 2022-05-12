@@ -1,6 +1,6 @@
 ```
 django-admin startproject fabrics - создание проекта
-python manage.py startapp user - создание приложение "пользователи"
+python manage.py startapp cloth - создание приложение "пользователи"
 
 python -m venv .venv – создание виртуального окружения Windows
 source .venv/Scripts/activate – активация виртуального окружения Windows
@@ -16,14 +16,14 @@ pip freeze > requirements.txt – сохранить установленные 
 
 
 TODO
-( ) верстка header
-( ) верстка о платформе
-( )
-( )
-( )
-( )
-( )
-( )
+(+) верстка header
+(+) верстка о платформе
+( ) модель ткань
+( ) список тканей и детальный обзор
+( ) избранное
+( ) поставщики
+( ) отзывы к тканям
+( ) поиск и фильтры
 ( )
 ( )
 ```

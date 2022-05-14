@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from django.contrib.auth import get_user_model
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
@@ -119,3 +120,25 @@ class Favourites(models.Model):
 
     def __str__(self):
         return f"{self.user} {self.cloth}"
+
+
+class FeedbackToCloth(models.Model):
+    """
+    Отзыв к ткани
+    """
+
+    user = models.ForeignKey(User, verbose_name=_("Пользователь"), on_delete=models.CASCADE)
+    cloth = models.ForeignKey(Cloth, verbose_name=_("Ткань"), on_delete=models.CASCADE)
+    date_created = models.DateTimeField(_("Дата создания"), default=timezone.now)
+    rating = models.IntegerField(_("Рейтинг"), validators=[
+            MaxValueValidator(5),
+            MinValueValidator(0)
+        ])
+    text = models.CharField(_("Текст"), max_length=300)
+
+    class Meta:
+        verbose_name = _("Отзыв к ткани")
+        verbose_name_plural = _("Отзыв к ткани")
+
+    def __str__(self):
+        return f"Отзыв {self.user} к {self.cloth}"

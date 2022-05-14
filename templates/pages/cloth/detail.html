@@ -57,6 +57,109 @@
           {% endif %}
         </div>
       </div>
+      <div class="row">
+        <div class="col-12">
+          <h3>Оставить отзыв</h3>
+        </div>
+        <div class="col-12">
+          <form action="{% url 'cloth:send-feedback' pk=object.id %}" method="POST">
+            {% csrf_token %}
+            <input
+            class="rating"
+            name="rating"
+            max="5"
+            oninput="this.style.setProperty('--value', `${this.valueAsNumber}`)"
+            step="1"
+            style="--value:0"
+            type="range"
+            value="0"
+            data-toggle="tooltip"
+            data-placement="right"
+            title="Зажмите и тяните в нужную сторону"
+            >
+            <input name="text" type="text" class="form-control w-50" required placeholder="Введите текст отзыва">
+            <input class="btn main-btn mt-3" type="submit" value="Отправить">
+          </form>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <h3>
+            Отзывы
+          </h3>
+        </div>
+        {% if feedbacks|length == 0 %}
+          <div class="col-12">
+            <p>
+              Отзывов еще нет
+            </p>
+          </div>
+        {% else %}
+          {% for feedback in feedbacks %}
+            <div class="col-12">
+              <div class="row">
+                <div class="col-1">
+                  <img src="{% static 'images/user-feenback.svg' %}" alt="user-feenback">
+                </div>
+                <div class="col-10">
+                  <div class="d-flex">
+                    <p>
+                      {{feedback.user.first_name}} {{feedback.user.last_name}}
+                    </p>
+                    <p>
+                      {{ feedback.date_created|date:"d.m.Y H:i" }}
+                    </p>
+                  </div>
+                  <p>
+                    {{feedback.text}}
+                  </p>
+                  <div class="d-flex">
+                    {% if feedback.rating == 0 %}
+                      <img src="{% static 'images/star-grey.svg' %}" alt="">
+                      <img src="{% static 'images/star-grey.svg' %}" alt="">
+                      <img src="{% static 'images/star-grey.svg' %}" alt="">
+                      <img src="{% static 'images/star-grey.svg' %}" alt="">
+                      <img src="{% static 'images/star-grey.svg' %}" alt="">
+                    {% elif feedback.rating == 1 %}
+                      <img src="{% static 'images/star.svg' %}" alt="">
+                      <img src="{% static 'images/star-grey.svg' %}" alt="">
+                      <img src="{% static 'images/star-grey.svg' %}" alt="">
+                      <img src="{% static 'images/star-grey.svg' %}" alt="">
+                      <img src="{% static 'images/star-grey.svg' %}" alt="">
+                    {% elif feedback.rating == 2 %}
+                      <img src="{% static 'images/star.svg' %}" alt="">
+                      <img src="{% static 'images/star.svg' %}" alt="">
+                      <img src="{% static 'images/star-grey.svg' %}" alt="">
+                      <img src="{% static 'images/star-grey.svg' %}" alt="">
+                      <img src="{% static 'images/star-grey.svg' %}" alt="">
+                    {% elif feedback.rating == 3 %}
+                      <img src="{% static 'images/star.svg' %}" alt="">
+                      <img src="{% static 'images/star.svg' %}" alt="">
+                      <img src="{% static 'images/star.svg' %}" alt="">
+                      <img src="{% static 'images/star-grey.svg' %}" alt="">
+                      <img src="{% static 'images/star-grey.svg' %}" alt="">
+                    {% elif feedback.rating == 4 %}
+                      <img src="{% static 'images/star.svg' %}" alt="">
+                      <img src="{% static 'images/star.svg' %}" alt="">
+                      <img src="{% static 'images/star.svg' %}" alt="">
+                      <img src="{% static 'images/star.svg' %}" alt="">
+                      <img src="{% static 'images/star-grey.svg' %}" alt="">
+                    {% elif feedback.rating == 5 %}
+                      <img src="{% static 'images/star.svg' %}" alt="">
+                      <img src="{% static 'images/star.svg' %}" alt="">
+                      <img src="{% static 'images/star.svg' %}" alt="">
+                      <img src="{% static 'images/star.svg' %}" alt="">
+                      <img src="{% static 'images/star.svg' %}" alt="">
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        {% endif %}
+      </div>
     </div>
   </section>
+
+
 {% endblock content%}

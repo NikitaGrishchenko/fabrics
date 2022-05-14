@@ -4,7 +4,8 @@ from django.urls import reverse
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 
-from .models import Cloth, Favourites
+from .forms import FeedbackToClothForm
+from .models import Cloth, Favourites, FeedbackToCloth
 
 
 class ClothDetailView(DetailView):
@@ -23,6 +24,9 @@ class ClothDetailView(DetailView):
                 context['is_favourites'] = True
         except Favourites.DoesNotExist:
             context['is_favourites'] = False
+
+        context['feedbacks'] = FeedbackToCloth.objects.filter(cloth_id=self.kwargs['pk']).order_by('-date_created')
+
         return context
 
 
@@ -65,3 +69,26 @@ class UserFavouritesListView(ListView):
         context = super().get_context_data(**kwargs)
         context['object_list'] = Favourites.objects.filter(user=self.request.user).order_by('-date_created')
         return context
+
+
+def send_feedback(request, pk):
+    """
+    Отправка отзыва
+    """
+    if request.method == 'POST':
+        form = FeedbackToClothForm(request.POST)
+        if form.is_valid():
+
+            try:
+                cloth = Cloth.objects.get(id=pk)
+            except Cloth.DoesNotExist:
+                return redirect('user:error')
+
+            feedback_to_cloth = FeedbackToCloth(
+                user=request.user,
+                cloth=cloth,
+                rating=form.cleaned_data['rating'],
+                text=form.cleaned_data['text'],
+            )
+            feedback_to_cloth.save()
+        return redirect('cloth:detail', pk=pk)

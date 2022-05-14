@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+  {{object.name}}
+{% endblock title %}
+
+{% block header %}
+  {% include 'include/header.html' %}
+{% endblock header %}
+
+{% block content %}
+  <section class="cloth-detail">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 my-4">
+          <h1>
+            {{object.name}}
+          </h1>
+          <p>
+            Артикул {{object.article}}
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4">
+          {% if object.image %}
+            <img src="{{object.image.url}}" alt="image" class="img-fluid">
+          {% endif %}
+        </div>
+        <div class="col-4">
+          <p>
+            Цена {{object.price}}
+          </p>
+          <p>
+            Производитель {{object.supplier.name}}
+          </p>
+          <p>
+            Округ {{object.supplier.get_district_display}}
+          </p>
+          <p>
+            Материал {{object.get_material_display}}
+          </p>
+          <p>
+            Цвет {{object.get_color_display}}
+          </p>
+          <p>
+            Описание {{object.description}}
+          </p>
+        </div>
+        <div class="col-4">
+          {% if is_favourites %}
+            В избранном
+            <button onclick="location.href='{% url 'cloth:delete-from-favorites' pk=object.id %}'" type="button" class="btn">Удалить из избранного</button>
+          {% else %}
+            <button onclick="location.href='{% url 'cloth:add-to-favorites' pk=object.id %}'" type="button" class="btn">Добавить в избранное</button>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock content%}

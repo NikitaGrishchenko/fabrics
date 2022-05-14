@@ -312,3 +312,25 @@ select {
 .footer-logo{
   padding-bottom: 70px;
 }
+
+.cloth-list__img{
+  height: 200px;
+}
+
+.cloth-link {
+  text-decoration: none;
+  color: #000;
+}
+.cloth-link:hover {
+  text-decoration: none;
+  color: #000;
+}
+
+.cloth-card-name{
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.cloth-detail__img{
+  height: 350px;
+}

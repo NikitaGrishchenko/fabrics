@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Cloth, Supplier
+from .models import Cloth, Favourites, Supplier
 
 
 @admin.register(Cloth)
@@ -16,3 +16,7 @@ class SupplierAdmin(admin.ModelAdmin):
     list_display = (
         "name",
     )
+
+@admin.register(Favourites)
+class FavouritesAdmin(admin.ModelAdmin):
+    pass

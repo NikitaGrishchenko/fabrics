@@ -1,0 +1,34 @@
+{% load static %}
+
+<div class="row">
+  <div class="col-12 my-4">
+    <h1>
+      Избранное
+    </h1>
+  </div>
+  {% if object_list|length == 0 %}
+    <div class="col-12 text-center">
+      <h3>
+        Пока ничего не добавлено
+      </h3>
+    </div>
+  {% elif object_list|length > 0 %}
+    {% for item in object_list %}
+      <div class="col-3 mb-4">
+        <a class="cloth-link" href="{% url 'cloth:detail' pk=item.cloth.pk %}">
+          <div class="card h-100">
+            {% if item.cloth.image %}
+              <img src="{{item.cloth.image.url}}" alt="image" class="cloth-list__img">
+            {% endif %}
+            <div style="position: relative;" class="card-body">
+              <p class="cloth-card-price">{{item.cloth.price}} ₽</p>
+              <p class="cloth-card-name">{{item.cloth.name}}</p>
+              <p class="cloth-card-supplier">{{item.cloth.supplier.name}}</p>
+              <p style="display: block; position: absolute; bottom: 2px; right: 5px; opacity: 0.3; font-size: 14px">{{ item.cloth.article }}</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    {% endfor %}
+  {% endif %}
+</div>

@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static cloth %}
 
 {% block title %}
   Личный кабинет
@@ -17,7 +17,11 @@
           <h1>Личный кабинет</h1>
         </div>
         <div class="col-12">
-          <p style="font-size: 20px" class="my-3 font-weight-bold">{{user.last_name}} {{user.first_name}} {{user.patronymic}}</p>
+          <p style="font-size: 20px" class="my-3 font-weight-bold">{{user.last_name}} {{user.first_name}} {{user.patronymic}}
+            <a href="{% url 'logout' %}">
+              Выйти из аккаунта
+            </a>
+          </p>
         </div>
         <div class="col-12 col-lg-4">
           <p>Телефон: {{user.phone}}</p>
@@ -26,6 +30,7 @@
           <p>E-mail: {{user.email}}</p>
         </div>
       </div>
+      {% favourites user.id %}
     </div>
   </section>
 {% endblock content %}

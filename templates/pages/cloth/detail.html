@@ -28,68 +28,77 @@
             <img src="{{object.image.url}}" alt="image" class="img-fluid">
           {% endif %}
         </div>
-        <div class="col-4">
+        <div class="col-4 cloth-detail-specifications">
           <p>
-            Цена {{object.price}}
+            <span style="color: rgb(153, 153, 153);">Цена</span> {{object.price}} ₽
           </p>
           <p>
-            Производитель {{object.supplier.name}}
+            <span style="color: rgb(153, 153, 153);">Производитель</span> {{object.supplier.name}}
           </p>
           <p>
-            Округ {{object.supplier.get_district_display}}
+            <span style="color: rgb(153, 153, 153);">Округ</span> {{object.supplier.get_district_display}}
           </p>
           <p>
-            Материал {{object.get_material_display}}
+            <span style="color: rgb(153, 153, 153);">Материал</span> {{object.get_material_display}}
           </p>
           <p>
-            Цвет {{object.get_color_display}}
+            <span style="color: rgb(153, 153, 153);">Цвет</span> {{object.get_color_display}}
           </p>
           <p>
-            Описание {{object.description}}
+            <span style="color: rgb(153, 153, 153);">Описание</span> {{object.description}}
           </p>
         </div>
-        <div class="col-4">
-          {% if is_favourites %}
-            В избранном
-            <button onclick="location.href='{% url 'cloth:delete-from-favorites' pk=object.id %}'" type="button" class="btn">Удалить из избранного</button>
-          {% else %}
-            <button onclick="location.href='{% url 'cloth:add-to-favorites' pk=object.id %}'" type="button" class="btn">Добавить в избранное</button>
-          {% endif %}
-        </div>
+        {% if user.is_authenticated %}
+          <div class="col-4">
+            {% if is_favourites %}
+              <img class="cloth-detail-heart" onclick="location.href='{% url 'cloth:delete-from-favorites' pk=object.id %}'" src="{% static 'images/heart-red.svg' %}" alt="heart-red">
+            {% else %}
+              <img class="cloth-detail-heart" onclick="location.href='{% url 'cloth:add-to-favorites' pk=object.id %}'" src="{% static 'images/heart-grey.svg' %}" alt="heart-red">
+            {% endif %}
+          </div>
+        {% endif %}
       </div>
-      <div class="row">
-        <div class="col-12">
+      <div class="row mb-5">
+        <div class="col-12 my-4">
           <h3>Оставить отзыв</h3>
         </div>
-        <div class="col-12">
-          <form action="{% url 'cloth:send-feedback' pk=object.id %}" method="POST">
-            {% csrf_token %}
-            <input
-            class="rating"
-            name="rating"
-            max="5"
-            oninput="this.style.setProperty('--value', `${this.valueAsNumber}`)"
-            step="1"
-            style="--value:0"
-            type="range"
-            value="0"
-            data-toggle="tooltip"
-            data-placement="right"
-            title="Зажмите и тяните в нужную сторону"
-            >
-            <input name="text" type="text" class="form-control w-50" required placeholder="Введите текст отзыва">
-            <input class="btn main-btn mt-3" type="submit" value="Отправить">
-          </form>
-        </div>
+        {% if user.is_authenticated %}
+          <div class="col-12">
+            <form action="{% url 'cloth:send-feedback' pk=object.id %}" method="POST">
+              {% csrf_token %}
+              <input
+              class="rating my-2"
+              name="rating"
+              max="5"
+              oninput="this.style.setProperty('--value', `${this.valueAsNumber}`)"
+              step="1"
+              style="--value:0"
+              type="range"
+              value="0"
+              data-toggle="tooltip"
+              data-placement="right"
+              title="Зажмите и тяните в нужную сторону"
+              >
+              <p>Комментарий</p>
+              <textarea  class="form-control w-50" rows="5" cols="45" name="text" maxlength="300" required
+              ></textarea>
+              <input class="btn main-btn mt-3" type="submit" value="Отправить">
+            </form>
+          </div>
+        {% else %}
+          <div class="col-12">
+            <a href="{% url 'login' %}">Авторизируйтесь</a>, чтобы оставлять отзывы
+          </div>
+        {% endif %}
       </div>
       <div class="row">
-        <div class="col-12">
+        <div class="col-12 mb-4">
           <h3>
             Отзывы
           </h3>
         </div>
         {% if feedbacks|length == 0 %}
-          <div class="col-12">
+          <div class="col-12 mb-5">
             <p>
               Отзывов еще нет
             </p>
@@ -97,60 +106,62 @@
         {% else %}
           {% for feedback in feedbacks %}
             <div class="col-12">
-              <div class="row">
-                <div class="col-1">
-                  <img src="{% static 'images/user-feenback.svg' %}" alt="user-feenback">
-                </div>
-                <div class="col-10">
-                  <div class="d-flex">
-                    <p>
-                      {{feedback.user.first_name}} {{feedback.user.last_name}}
-                    </p>
-                    <p>
-                      {{ feedback.date_created|date:"d.m.Y H:i" }}
-                    </p>
+              <div class="feedback-box">
+                <div class="row">
+                  <div class="col-1 d-flex align-items-center justify-content-center">
+                    <img src="{% static 'images/user-feenback.svg' %}" alt="user-feenback">
                   </div>
-                  <p>
-                    {{feedback.text}}
-                  </p>
-                  <div class="d-flex">
-                    {% if feedback.rating == 0 %}
-                      <img src="{% static 'images/star-grey.svg' %}" alt="">
-                      <img src="{% static 'images/star-grey.svg' %}" alt="">
-                      <img src="{% static 'images/star-grey.svg' %}" alt="">
-                      <img src="{% static 'images/star-grey.svg' %}" alt="">
-                      <img src="{% static 'images/star-grey.svg' %}" alt="">
-                    {% elif feedback.rating == 1 %}
-                      <img src="{% static 'images/star.svg' %}" alt="">
-                      <img src="{% static 'images/star-grey.svg' %}" alt="">
-                      <img src="{% static 'images/star-grey.svg' %}" alt="">
-                      <img src="{% static 'images/star-grey.svg' %}" alt="">
-                      <img src="{% static 'images/star-grey.svg' %}" alt="">
-                    {% elif feedback.rating == 2 %}
-                      <img src="{% static 'images/star.svg' %}" alt="">
-                      <img src="{% static 'images/star.svg' %}" alt="">
-                      <img src="{% static 'images/star-grey.svg' %}" alt="">
-                      <img src="{% static 'images/star-grey.svg' %}" alt="">
-                      <img src="{% static 'images/star-grey.svg' %}" alt="">
-                    {% elif feedback.rating == 3 %}
-                      <img src="{% static 'images/star.svg' %}" alt="">
-                      <img src="{% static 'images/star.svg' %}" alt="">
-                      <img src="{% static 'images/star.svg' %}" alt="">
-                      <img src="{% static 'images/star-grey.svg' %}" alt="">
-                      <img src="{% static 'images/star-grey.svg' %}" alt="">
-                    {% elif feedback.rating == 4 %}
-                      <img src="{% static 'images/star.svg' %}" alt="">
-                      <img src="{% static 'images/star.svg' %}" alt="">
-                      <img src="{% static 'images/star.svg' %}" alt="">
-                      <img src="{% static 'images/star.svg' %}" alt="">
-                      <img src="{% static 'images/star-grey.svg' %}" alt="">
-                    {% elif feedback.rating == 5 %}
-                      <img src="{% static 'images/star.svg' %}" alt="">
-                      <img src="{% static 'images/star.svg' %}" alt="">
-                      <img src="{% static 'images/star.svg' %}" alt="">
-                      <img src="{% static 'images/star.svg' %}" alt="">
-                      <img src="{% static 'images/star.svg' %}" alt="">
-                    {% endif %}
+                  <div class="col-10">
+                    <div class="d-flex align-items-center">
+                      <p>
+                        <strong>{{feedback.user.first_name}} {{feedback.user.last_name}}</strong>
+                      </p>
+                      <p class="feedback-box__date">
+                        {{ feedback.date_created|date:"d.m.Y H:i" }}
+                      </p>
+                    </div>
+                    <p class="my-2  ">
+                      {{feedback.text}}
+                    </p>
+                    <div class="d-flex ">
+                      {% if feedback.rating == 0 %}
+                        <img src="{% static 'images/star-grey.svg' %}" alt="">
+                        <img src="{% static 'images/star-grey.svg' %}" alt="">
+                        <img src="{% static 'images/star-grey.svg' %}" alt="">
+                        <img src="{% static 'images/star-grey.svg' %}" alt="">
+                        <img src="{% static 'images/star-grey.svg' %}" alt="">
+                      {% elif feedback.rating == 1 %}
+                        <img src="{% static 'images/star.svg' %}" alt="">
+                        <img src="{% static 'images/star-grey.svg' %}" alt="">
+                        <img src="{% static 'images/star-grey.svg' %}" alt="">
+                        <img src="{% static 'images/star-grey.svg' %}" alt="">
+                        <img src="{% static 'images/star-grey.svg' %}" alt="">
+                      {% elif feedback.rating == 2 %}
+                        <img src="{% static 'images/star.svg' %}" alt="">
+                        <img src="{% static 'images/star.svg' %}" alt="">
+                        <img src="{% static 'images/star-grey.svg' %}" alt="">
+                        <img src="{% static 'images/star-grey.svg' %}" alt="">
+                        <img src="{% static 'images/star-grey.svg' %}" alt="">
+                      {% elif feedback.rating == 3 %}
+                        <img src="{% static 'images/star.svg' %}" alt="">
+                        <img src="{% static 'images/star.svg' %}" alt="">
+                        <img src="{% static 'images/star.svg' %}" alt="">
+                        <img src="{% static 'images/star-grey.svg' %}" alt="">
+                        <img src="{% static 'images/star-grey.svg' %}" alt="">
+                      {% elif feedback.rating == 4 %}
+                        <img src="{% static 'images/star.svg' %}" alt="">
+                        <img src="{% static 'images/star.svg' %}" alt="">
+                        <img src="{% static 'images/star.svg' %}" alt="">
+                        <img src="{% static 'images/star.svg' %}" alt="">
+                        <img src="{% static 'images/star-grey.svg' %}" alt="">
+                      {% elif feedback.rating == 5 %}
+                        <img src="{% static 'images/star.svg' %}" alt="">
+                        <img src="{% static 'images/star.svg' %}" alt="">
+                        <img src="{% static 'images/star.svg' %}" alt="">
+                        <img src="{% static 'images/star.svg' %}" alt="">
+                        <img src="{% static 'images/star.svg' %}" alt="">
+                      {% endif %}
+                    </div>
                   </div>
                 </div>
               </div>

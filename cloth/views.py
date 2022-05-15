@@ -15,14 +15,18 @@ class ClothDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['object'] = Cloth.objects.get(id=self.kwargs['pk'])
-        try:
-            is_favourites = Favourites.objects.get(
-                user=self.request.user,
-                cloth_id = self.kwargs['pk']
-            )
-            if is_favourites:
-                context['is_favourites'] = True
-        except Favourites.DoesNotExist:
+        if self.request.user.is_authenticated:
+            try:
+
+                is_favourites = Favourites.objects.get(
+                    user=self.request.user,
+                    cloth_id = self.kwargs['pk']
+                )
+                if is_favourites:
+                    context['is_favourites'] = True
+            except Favourites.DoesNotExist:
+                context['is_favourites'] = False
+        else:
             context['is_favourites'] = False
 
         context['feedbacks'] = FeedbackToCloth.objects.filter(cloth_id=self.kwargs['pk']).order_by('-date_created')

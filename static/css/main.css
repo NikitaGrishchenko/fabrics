@@ -334,3 +334,29 @@ select {
 .cloth-detail__img{
   height: 350px;
 }
+
+.cloth-detail-specifications p {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.cloth-detail-heart{
+  cursor: pointer;
+}
+
+.cloth-detail-input__text{
+  height: 150px;
+}
+
+.feedback-box{
+  background: rgb(231, 231, 231);
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+.feedback-box__date{
+  font-size: 12px;
+  margin-left: 5px;
+  color: rgb(127, 127, 127);
+}

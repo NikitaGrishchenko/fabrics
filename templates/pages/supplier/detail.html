@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+  {{object.name}}
+{% endblock title %}
+
+{% block header %}
+  {% include 'include/header.html' %}
+{% endblock header %}
+
+{% block content %}
+  <section class="supplier-detail">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 mt-4 d-flex align-items-center">
+          {% if object.logo %}
+            <img src="{{object.logo.url}}" alt="image" class="supplier-detail__img">
+          {% endif %}
+          <h1 class="ml-3">
+            {{object.name}}
+          </h1>
+        </div>
+        <div class="col-12 my-2 d-flex align-items-center">
+          <div class="mr-2">
+            <img width="20" src="{% static 'images/Address.png' %}" alt="Address">
+          </div>
+          <div>
+            <p> {{object.get_district_display}} округ </p>
+            <p>{{object.address}} </p>
+          </div>
+        </div>
+        <div class="col-3 d-flex align-items-center">
+          <div class="mr-2">
+            <img width="20" src="{% static 'images/Phone.png' %}" alt="Address">
+          </div>
+          <p>{{object.phone}} </p>
+        </div>
+        <div class="col-3 d-flex align-items-center">
+          <div class="mr-2">
+            <img width="20" src="{% static 'images/Mail.png' %}" alt="Address">
+          </div>
+          <p>{{object.email}} </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 my-4">
+          <h3>
+            Товары производителя
+          </h3>
+        </div>
+        {% if cloths|length == 0 %}
+          <div class="col-12">
+            <h5>
+              Пока ничего нет
+            </h5>
+          </div>
+        {% else %}
+          {% for item in cloths %}
+            <div class="col-3 mb-4">
+              <a class="cloth-link" href="{% url 'cloth:detail' pk=item.pk %}">
+                <div class="card h-100">
+                  {% if item.image %}
+                    <img src="{{item.image.url}}" alt="image" class="cloth-list__img">
+                  {% endif %}
+                  <div style="position: relative;" class="card-body">
+                    <p class="cloth-card-price">{{item.price}} ₽</p>
+                    <p class="cloth-card-name">{{item.name}}</p>
+                    <p class="cloth-card-supplier">{{item.supplier.name}}</p>
+                    <p style="display: block; position: absolute; bottom: 2px; right: 5px; opacity: 0.3; font-size: 14px">{{ item.article }}</p>
+                  </div>
+                </div>
+              </a>
+            </div>
+          {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+  </section>
+{% endblock content%}

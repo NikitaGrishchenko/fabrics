@@ -5,7 +5,7 @@ from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 
 from .forms import FeedbackToClothForm
-from .models import Cloth, Favourites, FeedbackToCloth
+from .models import Cloth, Favourites, FeedbackToCloth, Supplier
 
 
 class ClothDetailView(DetailView):
@@ -96,3 +96,29 @@ def send_feedback(request, pk):
             )
             feedback_to_cloth.save()
         return redirect('cloth:detail', pk=pk)
+
+
+
+class SupplierListView(ListView):
+    """
+    Лист поставщиков
+    """
+    model = Supplier
+    template_name = "pages/supplier/list.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['object_list'] = Supplier.objects.all().order_by('-id')
+        return context
+
+
+class SupplierDetailView(DetailView):
+    model = Supplier
+    template_name = "pages/supplier/detail.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['object'] = Supplier.objects.get(id=self.kwargs['pk'])
+        context['cloths'] = Cloth.objects.filter(supplier_id=self.kwargs['pk'])
+
+        return context

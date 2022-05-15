@@ -38,6 +38,11 @@
           Каталог материалов
         </a>
       </li>
+      <li>
+        <a class="drawer-menu-item" href="{% url 'cloth:supplier-list' %}">
+          Каталог поставщиков
+        </a>
+      </li>
       {% if user.is_authenticated %}
         <li>
           <a class="drawer-menu-item" href="{% url 'cloth:favourites' %}">

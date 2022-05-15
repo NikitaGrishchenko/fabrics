@@ -360,3 +360,15 @@ select {
   margin-left: 5px;
   color: rgb(127, 127, 127);
 }
+
+.supplier-list__img{
+  height: 50px !important;
+}
+
+.supplier-list-district{
+  font-size: 13px;
+}
+
+.supplier-detail__img{
+  width: 75px;
+}

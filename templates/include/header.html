@@ -45,13 +45,13 @@
       </li>
       {% if user.is_authenticated %}
         <li>
-          <a class="drawer-menu-item" href="{% url 'cloth:favourites' %}">
-            Избранное
+          <a class="drawer-menu-item" href="{% url 'user:account' %}">
+            Личный кабинет
           </a>
         </li>
         <li>
-          <a class="drawer-menu-item" href="{% url 'user:account' %}">
-            Личный кабинет
+          <a class="drawer-menu-item" href="{% url 'cloth:favourites' %}">
+            Избранное
           </a>
         </li>
         <li>

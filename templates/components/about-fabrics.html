@@ -8,24 +8,55 @@
           Каталог тканей
         </div>
       </div>
-      <div class="col-12">
-        <a href="#">
+      <div class="col-12 d-none d-md-block">
+        <a href="{% url 'cloth:list' %}">
           <div class="about-fabrics-case">
             <img src="{% static 'images/about-fabrics-case--1.png' %}" alt="">
           </div>
         </a>
       </div>
-      <div class="col-12">
-        <a href="#">
+      <div class="col-12 col-12 d-none d-md-block">
+        <a href="{% url 'cloth:list' %}">
           <div class="about-fabrics-case">
             <img src="{% static 'images/about-fabrics-case--2.png' %}" alt="">
           </div>
         </a>
       </div>
-      <div class="col-12">
-        <a href="#">
+      <div class="col-12 col-12 d-none d-md-block">
+        <a href="{% url 'cloth:list' %}">
           <div class="about-fabrics-case">
             <img src="{% static 'images/about-fabrics-case--3.png' %}" alt="">
+          </div>
+        </a>
+      </div>
+      <div class="col-12 d-block d-md-none">
+        <a href="{% url 'cloth:list' %}" class="about-fabrics-low__a">
+          <div class="about-fabrics-low">
+            <img src="{% static 'images/about-fabrics-low-1.png' %}" alt="about-fabrics-low">
+          <p>
+            <span style="color: #000;">Хлопок</span> - натуральный и приятный на ощупь материал, сохраняющий тепло и на пропускающий холод. Прочный
+            и долговечный.
+          </p>
+          </div>
+        </a>
+      </div>
+      <div class="col-12 d-block d-md-none">
+        <a href="{% url 'cloth:list' %}" class="about-fabrics-low__a">
+          <div class="about-fabrics-low">
+            <img src="{% static 'images/about-fabrics-low-2.png' %}" alt="about-fabrics-low">
+            <p>
+              <span style="color: #000;">Лён </span>- прочный, дышащий и гибкий материал. Согревает в холодное время и охлаждает в жару
+            </p>
+          </div>
+        </a>
+      </div>
+      <div class="col-12 d-block d-md-none">
+        <a href="{% url 'cloth:list' %}" class="about-fabrics-low__a">
+          <div class="about-fabrics-low">
+            <img src="{% static 'images/about-fabrics-low-3.png' %}" alt="about-fabrics-low">
+            <p>
+              <span style="color: #000;">Органическая шерсть </span>- такая шерсть не подвергается  химическому воздействию, меньше мнётся и пачкается, а также имеет свойство самоотчищения
+            </p>
           </div>
         </a>
       </div>

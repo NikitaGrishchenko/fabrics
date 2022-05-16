@@ -14,7 +14,7 @@
     <div class="container">
       <div class="row">
         <div class="col-12 my-4">
-          <h1>
+          <h1 class="cloth-detail__title">
             {{object.name}}
           </h1>
           <p>
@@ -23,12 +23,12 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-4">
+        <div class="col-12 col-sm-6 col-md-4">
           {% if object.image %}
             <img src="{{object.image.url}}" alt="image" class="img-fluid">
           {% endif %}
         </div>
-        <div class="col-4 cloth-detail-specifications">
+        <div class="col-12 col-sm-6 col-md-4 cloth-detail-specifications">
           <p>
             <span style="color: rgb(153, 153, 153);">Цена</span> {{object.price}} ₽
           </p>
@@ -85,7 +85,7 @@
               title="Зажмите и тяните в нужную сторону"
               >
               <p>Комментарий</p>
-              <textarea  class="form-control w-50" rows="5" cols="45" name="text" maxlength="300" required
+              <textarea  class="form-control w-75" rows="5" cols="45" name="text" maxlength="300" required
               ></textarea>
               <input class="btn main-btn mt-3" type="submit" value="Отправить">
             </form>
@@ -114,7 +114,7 @@
               <div class="feedback-box">
                 <div class="row">
                   <div class="col-1 d-flex align-items-center justify-content-center">
-                    <img src="{% static 'images/user-feenback.svg' %}" alt="user-feenback">
+                    <img class="d-none d-sm-block" src="{% static 'images/user-feenback.svg' %}" alt="user-feenback">
                   </div>
                   <div class="col-10">
                     <div class="d-flex align-items-center">

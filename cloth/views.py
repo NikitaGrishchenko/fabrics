@@ -61,16 +61,17 @@ def delete_from_favorites(request, pk):
 class ClothListView(ListView):
     model = Cloth
     template_name = "pages/cloth/list.html"
+    # paginate_by = 2
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        filter = ClothFilter(self.request.GET, queryset=self.get_queryset())
-        paginated_filtered = Paginator(filter.qs, 50)
-        page_number = self.request.GET.get('page')
-        page_obj = paginated_filtered.get_page(page_number)
+        # filter = ClothFilter(self.request.GET, queryset=self.get_queryset())
+        # paginated_filtered = Paginator(filter.qs, 50)
+        # page_number = self.request.GET.get('page')
+        # page_obj = paginated_filtered.get_page(page_number)
 
-        context['filter'] = filter
-        context['page_obj'] = page_obj
+        context['filter'] = ClothFilter(self.request.GET, queryset=self.get_queryset())
+        # context['page_obj'] = page_obj
         return context
 
 class UserFavouritesListView(ListView):

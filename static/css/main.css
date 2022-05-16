@@ -215,7 +215,7 @@ select {
   border: 2px solid #fff;
   text-align: center;
   width: max-content;
-  font-size: 35px;
+  font-size: 30px;
   padding: 40px 70px;
   margin-top: 115px;
   letter-spacing: 0.105em;
@@ -362,7 +362,7 @@ select {
 }
 
 .supplier-list__img{
-  height: 50px !important;
+  width: 50px !important;
 }
 
 .supplier-list-district{
@@ -406,4 +406,143 @@ select {
 }
 .cloth-list-reset:hover{
   color: #080A07;
+}
+
+.about-fabrics-low img {
+  width: 200px;
+  margin-bottom: 15px;
+}
+.about-fabrics-low p {
+  font-size: 20px;
+}
+
+.about-fabrics-low__a{
+  text-decoration: none;
+  color: #fff;
+}
+.about-fabrics-low__a:hover{
+  text-decoration: none;
+  color: #fff;
+}
+
+.about-fabrics-low{
+  background: rgba(79, 110, 89, 0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px 5px;
+  margin-bottom: 20px;
+}
+
+/* 00000000000000000000000000000000000000000000 */
+
+@media (max-width: 991.98px) {
+  .about-platform__banner {
+    font-size: 25px;
+    padding: 30px 30px;
+  }
+  .beginning-title {
+    font-size: 100px;
+  }
+  .cloth-list-form--name{
+    margin-bottom: 10px;
+  }
+}
+
+/* 000000000000000000000000000000000000000000000 */
+
+@media (max-width: 767.98px) {
+  .about-platform__banner {
+    font-size: 20px;
+    padding: 20px;
+  }
+  .header-logo{
+    width: 200px;
+  }
+
+  .navbar-section__img{
+    width: 40px;
+  }
+
+  .header-burger{
+    width: 40px;
+  }
+
+  .navbar-section{
+    padding-top: 20px;
+  }
+  .beginning-subtitle {
+    font-size: 30px;
+  }
+  .about-platform-item__text{
+    font-size: 20px;
+  }
+  .about-platform-item__img {
+    min-width: 70px;
+    max-width: 70px;
+  }
+  .about-fabrics__title{
+    font-size: 60px;
+  }
+  .about-fabrics__title{
+    margin-bottom: 15px;
+  }
+}
+
+/* 00000000000000000000000000000000000000000000 */
+
+
+
+@media (max-width: 575.98px) {
+  .about-platform__banner {
+    font-size: 18px;
+    padding: 10px;
+    width: auto;
+  }
+
+  .about-platform__title{
+    font-size: 35px;
+  }
+  .beginning-title {
+    font-size: 45px;
+  }
+  .beginning-subtitle {
+    font-size: 20px;
+  }
+  .beginning-arrow{
+    width: 40px;
+  }
+  .footer-title{
+    font-size: 25px;
+    text-align: center;
+  }
+  .footer-number, .footer-email{
+    font-size: 20px;
+    text-align: center;
+  }
+  .footer-lk a {
+    font-size: 25px;
+  }
+  .footer-logo {
+    width: 250px;
+  }
+  .cloth-list-form--material{
+    margin-bottom: 10px;
+  }
+  .cloth-list-form--name{
+    width: 90%;
+  }
+  .cloth-detail__title{
+    font-size: 30px;
+  }
+  .cloth-detail-specifications{
+    margin-top: 10px;
+  }
+  .feedback-box {
+    padding: 10px;
+  }
+  .supplier-detail__title{
+    font-size: 25px;
+  }
 }

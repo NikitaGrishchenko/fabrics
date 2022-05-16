@@ -17,7 +17,7 @@
           {% if object.logo %}
             <img src="{{object.logo.url}}" alt="image" class="supplier-detail__img">
           {% endif %}
-          <h1 class="ml-3">
+          <h1 class="supplier-detail__title ml-3">
             {{object.name}}
           </h1>
         </div>
@@ -30,13 +30,13 @@
             <p>{{object.address}} </p>
           </div>
         </div>
-        <div class="col-3 d-flex align-items-center">
+        <div class="col-12 col-md-3 d-flex align-items-center">
           <div class="mr-2">
             <img width="20" src="{% static 'images/Phone.png' %}" alt="Address">
           </div>
           <p>{{object.phone}} </p>
         </div>
-        <div class="col-3 d-flex align-items-center">
+        <div class="col-12 col-md-3 d-flex align-items-center">
           <div class="mr-2">
             <img width="20" src="{% static 'images/Mail.png' %}" alt="Address">
           </div>
@@ -57,7 +57,7 @@
           </div>
         {% else %}
           {% for item in cloths %}
-            <div class="col-3 mb-4">
+            <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-4">
               <a class="cloth-link" href="{% url 'cloth:detail' pk=item.pk %}">
                 <div class="card h-100">
                   {% if item.image %}

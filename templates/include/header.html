@@ -3,13 +3,13 @@
 <section class="navbar-section">
   <div class="container h-100">
     <div class="row h-100 align-items-center">
-      <div class="col-6 d-flex">
-        <img class="drawer-toggle mr-5" src="{% static 'images/burger.svg' %}" alt="">
+      <div class="col-12 col-md-6 d-flex">
+        <img class="header-burger drawer-toggle mr-5" src="{% static 'images/burger.svg' %}" alt="">
         <a href="http://fabrique-a-models.com/">
-          <img src="{% static 'images/logo.png' %}" alt="">
+          <img class="header-logo" src="{% static 'images/logo.png' %}" alt="">
         </a>
       </div>
-      <div class="col-6 d-flex justify-content-end align-items-center">
+      <div class="col-12 col-md-6 d-flex justify-content-end align-items-center">
         <div>
           {% if user.is_authenticated %}
             <a class="nav-link" href="{% url 'user:account' %}">Личный кабинет</a>

@@ -14,7 +14,7 @@
     </div>
   {% elif object_list|length > 0 %}
     {% for item in object_list %}
-      <div class="col-3 mb-4">
+      <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-4">
         <a class="cloth-link" href="{% url 'cloth:detail' pk=item.cloth.pk %}">
           <div class="card h-100">
             {% if item.cloth.image %}

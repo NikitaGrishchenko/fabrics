@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 
+from .filters import ClothFilter
 from .forms import FeedbackToClothForm
 from .models import Cloth, Favourites, FeedbackToCloth, Supplier
 
@@ -60,10 +61,10 @@ class ClothListView(ListView):
     model = Cloth
     template_name = "pages/cloth/list.html"
 
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     context['object_list'] = News.objects.all().order_by('-id')
-    #     return context
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter'] = ClothFilter(self.request.GET, queryset=self.get_queryset())
+        return context
 
 class UserFavouritesListView(ListView):
     model = Favourites

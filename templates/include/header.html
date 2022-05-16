@@ -62,6 +62,11 @@
       {% endif %}
       {% if not user.is_authenticated %}
         <li>
+          <a class="drawer-menu-item" href="{% url 'login' %}">
+            Войти
+          </a>
+        </li>
+        <li>
           <a class="drawer-menu-item" href="{% url 'user:registration' %}">
             Зарегистрироваться
           </a>

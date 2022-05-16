@@ -372,3 +372,38 @@ select {
 .supplier-detail__img{
   width: 75px;
 }
+
+.cloth-list-form {
+  height: 35px;
+  margin-right: 5px;
+}
+
+.cloth-list-form--name{
+  width: 350px;
+}
+
+.cloth-list-form--material, .cloth-list-form--color{
+  width: 160px;
+}
+
+.cloth-list-btn{
+  height: 35px;
+  margin-right: 5px;
+  color: #fff;
+  background: #080A07;
+  border: 1px solid #080A07;
+}
+
+
+.cloth-list-btn:hover {
+  color: #080A07;
+  background: #fff;
+  border: 1px solid #080A07;
+}
+
+.cloth-list-reset{
+  color: #080A07;
+}
+.cloth-list-reset:hover{
+  color: #080A07;
+}

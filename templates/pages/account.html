@@ -16,11 +16,8 @@
         <div class="col-12 my-4">
           <h1>Личный кабинет</h1>
         </div>
-        <div class="col-12">
+        <div class="col-12 d-flex align-items-center">
           <p style="font-size: 20px" class="my-3 font-weight-bold">{{user.last_name}} {{user.first_name}} {{user.patronymic}}
-            <a href="{% url 'logout' %}">
-              Выйти из аккаунта
-            </a>
           </p>
         </div>
         <div class="col-12 col-lg-4 d-flex align-items-center">

@@ -20,12 +20,12 @@
         </div>
         <div class="col-12 my-4 d-flex align-items-center">
           <p class="mr-2">Поиск</p>
-          <form method="GET">
-            {% render_field filter.form.name placeholder="Выберите квартиру"%}
-            {% render_field filter.form.material placeholder="Выберите квартиру"%}
-            {% render_field filter.form.color placeholder="Выберите квартиру"%}
-            <button type="submit" class="btn">Найти</button>
-            <a href="{% url 'cloth:list' %}" type="submit">Сбросить</a>
+          <form class="d-flex align-items-center" method="GET">
+            {% render_field filter.form.name class="cloth-list-form cloth-list-form--name" placeholder="Введите название или артикул"%}
+            {% render_field filter.form.material class="cloth-list-form cloth-list-form--material" %}
+            {% render_field filter.form.color class="cloth-list-form cloth-list-form--color"%}
+            <button type="submit" class="btn cloth-list-btn">Найти</button>
+            <a class="cloth-list-reset" href="{% url 'cloth:list' %}" type="submit">Сбросить</a>
           </form>
         </div>
         {% if filter.qs|length == 0 %}
@@ -34,8 +34,8 @@
               Ничего не найдено
             </h3>
           </div>
-        {% elif filter.qs|length > 0 %}
-          {% for item in filter.qs %}
+        {% elif page_obj|length > 0 %}
+          {% for item in page_obj %}
             <div class="col-3 mb-4">
               <a class="cloth-link" href="{% url 'cloth:detail' pk=item.pk %}">
                 <div class="card h-100">
@@ -53,6 +53,25 @@
             </div>
           {% endfor %}
         {% endif %}
+      </div>
+      <div class="row mb-5">
+        <div class="container">
+          <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                  <a href="?page=1"> Первая&laquo;</a>
+                  <a href="?page={{ page_obj.previous_page_number }}"> Предыдущая</a>
+                {% endif %}
+                <span class="current">
+                    Страница {{page_obj.number}} из {{ page_obj.paginator.num_pages}}
+                </span>
+                {% if page_obj.has_next %}
+                  <a href="?page={{ page_obj.next_page_number }}"> Следующая</a>
+                  <a href="?page={{ page_obj.paginator.num_pages }}">&raquo;Последняя</a>
+                {% endif %}
+            </span>
+        </div>
+        </div>
       </div>
     </div>
   </section>

@@ -25,11 +25,16 @@ class Supplier(models.Model):
 ]
 
     name = models.CharField(max_length=254, verbose_name=_("Название"))
-    logo = models.ImageField(null=False, blank=False, verbose_name=_("Логотип"))
+    description = models.CharField(max_length=254, verbose_name=_("Описание"), null=True, blank=True)
+    date_of_foundation = models.CharField(max_length=254, verbose_name=_("Дата основания"), null=True, blank=True)
+    logo = models.ImageField(null=True, blank=True, verbose_name=_("Логотип"))
     district = models.CharField(_("Округ"), max_length=25, choices = DISTRICT)
+    types_of_fabrics = models.CharField(_("Виды тканей"), max_length=254, null=True, blank=True)
     address = models.CharField(max_length=254, null=True, blank=True, verbose_name=_("Адрес"))
-    phone = models.CharField(max_length=50, null=True, blank=True, verbose_name=_("Номер телефона"))
-    email = models.EmailField(_("E-mail"), max_length=254)
+    phone = models.CharField(max_length=254, null=True, blank=True, verbose_name=_("Номер телефона"))
+    email = models.EmailField(_("E-mail"), max_length=254, null=True, blank=True)
+    link_to_the_catalog = models.URLField(_("Ссылка на каталог"), max_length=200, null=True, blank=True)
+    link_to_the_site = models.URLField(_("Ссылка на сайт"), max_length=200, null=True, blank=True)
 
     class Meta:
         verbose_name = _("Поставщик")

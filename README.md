@@ -14,17 +14,17 @@ python manage.py migrate - применить миграции
 pip freeze – вывести установленные модули в консоль
 pip freeze > requirements.txt – сохранить установленные модули в файл
 
+python manage.py createsuperuser
 
-TODO
-(+) верстка header
-(+) верстка о платформе
-(+) модель ткань
-(+) список тканей и детальный обзор
-(+) избранное
-(+) поставщики
-(+) отзывы к тканям
-(+) поиск и фильтры
-(-) пагинация
-(+) адаптив
-( ) шоурум
+python manage.py runserver 0.0.0.0:8000
+
+sudo nano /etc/nginx/sites-available/fabrics
+
+sudo ln -s /etc/nginx/sites-available/fabrics /etc/nginx/sites-enabled
+
+sudo systemctl restart nginx
+sudo systemctl restart gunicorn
+
+
+
 ```

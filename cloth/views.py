@@ -5,7 +5,7 @@ from django.urls import reverse
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 
-from .filters import ClothFilter
+from .filters import ClothFilter, SupplierFilter
 from .forms import FeedbackToClothForm
 from .models import Cloth, Favourites, FeedbackToCloth, Supplier
 
@@ -65,13 +65,9 @@ class ClothListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # filter = ClothFilter(self.request.GET, queryset=self.get_queryset())
-        # paginated_filtered = Paginator(filter.qs, 50)
-        # page_number = self.request.GET.get('page')
-        # page_obj = paginated_filtered.get_page(page_number)
 
         context['filter'] = ClothFilter(self.request.GET, queryset=self.get_queryset())
-        # context['page_obj'] = page_obj
+
         return context
 
 class UserFavouritesListView(ListView):
@@ -117,7 +113,9 @@ class SupplierListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['object_list'] = Supplier.objects.all().order_by('-id')
+        # context['object_list'] = Supplier.objects.all().order_by('-id')
+        context['filter'] = SupplierFilter(self.request.GET, queryset=self.get_queryset())
+
         return context
 
 

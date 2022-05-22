@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static %}
+{% load static widget_tweaks %}
 
 {% block title %}
   Каталог поставщиков
@@ -18,14 +18,23 @@
             Каталог поставщиков
           </h1>
         </div>
-        {% if object_list|length == 0 %}
+        <div class="col-12 my-4 d-lg-flex align-items-center">
+          <p class="mr-2">Поиск</p>
+          <form class="d-lg-flex align-items-center" method="GET">
+            {% render_field filter.form.address class="cloth-list-form cloth-list-form--name" placeholder="Введите адрес"%}
+            {% render_field filter.form.district class="cloth-list-form cloth-list-form--material" %}
+            <button type="submit" class="btn cloth-list-btn">Найти</button>
+            <a class="cloth-list-reset" href="{% url 'cloth:supplier-list' %}" type="submit">Сбросить</a>
+          </form>
+        </div>
+        {% if filter.qs|length == 0 %}
           <div class="col-12 text-center">
             <h3>
-              Пока ничего не добавлено
+              Ничего не найдено
             </h3>
           </div>
-        {% elif object_list|length > 0 %}
-          {% for item in object_list %}
+        {% elif filter.qs|length > 0 %}
+          {% for item in filter.qs %}
             <div class="col-12 mb-4">
               <a class="cloth-link" href="{% url 'cloth:supplier-detail' pk=item.pk %}">
                 <div class="card h-100">
@@ -40,6 +49,7 @@
                       <div class="col-9 d-flex flex-column justify-content-center">
                         <p class="cloth-card-name">{{item.name}}</p>
                         <p class="supplier-list-district">{{item.get_district_display}} округ</p>
+                        <p class="supplier-list-district">{{item.address}}</p>
                       </div>
                     </div>
 

@@ -1,6 +1,25 @@
 import django_filters
 
-from .models import Cloth
+from .models import Cloth, Supplier
+
+
+class SupplierFilter(django_filters.FilterSet):
+
+    address = django_filters.CharFilter(method="filter_by_address")
+    district = django_filters.ChoiceFilter(choices=Supplier.DISTRICT)
+
+    class Meta:
+        model = Supplier
+        fields = ("address", "district", )
+
+    def filter_by_address(self, queryset, name, value):
+
+        exclude_obj = []
+        for item in queryset:
+            if item.address.lower().strip().find(value.lower().strip()) != -1:
+                exclude_obj.append(item.id)
+        return queryset.filter(pk__in=exclude_obj)
+
 
 
 class ClothFilter(django_filters.FilterSet):

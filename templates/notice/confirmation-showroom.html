@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block header %}
+  {% include 'include/header.html' %}
+{% endblock header %}
+
+{% block content %}
+  <section class="thanks">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-5 offset-lg-4 text-center">
+          <div class="thanks-box">
+            <p>Вы успешно отправили заявку на добавление записи в виртуальный шоурум, после подтверждения администратором, она появится в ленте</p>
+            <a class="btn mt-3 main-btn" href="{% url 'home'%}">На главную</a>
+            <a class="btn mt-3 main-btn" href="{% url 'showroom:list' %}">Виртуальный шоурум</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

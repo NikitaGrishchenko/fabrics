@@ -1,6 +1,6 @@
 ```
 django-admin startproject fabrics - создание проекта
-python manage.py startapp cloth - создание приложение "пользователи"
+python manage.py startapp showroom - создание приложение "пользователи"
 
 python -m venv .venv – создание виртуального окружения Windows
 source .venv/Scripts/activate – активация виртуального окружения Windows

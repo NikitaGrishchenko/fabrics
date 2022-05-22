@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load static widget_tweaks %}
+
+{% block title %}
+  Виртуальный шоурум
+{% endblock title %}
+
+{% block header %}
+  {% include 'include/header.html' %}
+{% endblock header %}
+
+{% block content %}
+  <section class="showroom-list">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 my-4">
+          <h1>
+            Виртуальный шоурум
+          </h1>
+          {% if user.is_authenticated %}
+            <a href="{% url 'showroom:add' %}">Добавить запись</a>
+          {% else %}
+            <a href="{% url 'login' %}">Авторизируйтесь</a>, чтобы добавлять записи
+          {% endif %}
+        </div>
+        {% if object_list|length == 0 %}
+          <div class="col-12 text-center">
+            <h3>
+              Ничего не найдено
+            </h3>
+          </div>
+        {% elif object_list|length > 0 %}
+          {% for item in object_list %}
+            <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 mb-4">
+                <div class="card h-100">
+                    {% if item.image %}
+                      <img src="{{item.image.url}}" alt="image" class="img-fluid">
+                    {% endif %}
+                  <div class="p-3">
+                    <p class="showroom-list-name">{{item.name}}</p>
+                    <p class="showroom-list-description">{{item.description}}</p>
+                  </div>
+
+                </div>
+            </div>
+          {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+  </section>
+{% endblock content %}
+

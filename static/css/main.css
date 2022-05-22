@@ -435,6 +435,12 @@ select {
   margin-bottom: 20px;
 }
 
+.showroom-list-name{
+  font-size: 18px;
+  font-weight: bold;
+}
+
+
 /* 00000000000000000000000000000000000000000000 */
 
 @media (max-width: 991.98px) {

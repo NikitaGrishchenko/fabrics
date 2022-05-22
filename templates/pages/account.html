@@ -17,8 +17,11 @@
           <h1>Личный кабинет</h1>
         </div>
         <div class="col-12 d-flex align-items-center">
-          <p style="font-size: 20px" class="my-3 font-weight-bold">{{user.last_name}} {{user.first_name}} {{user.patronymic}}
-          </p>
+          <p style="font-size: 20px" class="my-3 font-weight-bold">{{user.last_name}} {{user.first_name}}
+            {% if user.patronymic %}
+              {{user.patronymic}}
+            {% endif %}
+            </p>
         </div>
         <div class="col-12 col-lg-4 d-flex align-items-center">
           <div class="mr-2">

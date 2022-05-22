@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static widget_tweaks %}
+
+{% block title %}
+  Регистрация
+{% endblock title %}
+
+{% block header %}
+  {% include 'include/header.html' %}
+{% endblock header %}
+
+{% block content %}
+<section class="registration">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 my-4">
+        <h1>Добавить в виртуальный шоурум</h1>
+      </div>
+      <div class="col-12">
+        <form action="" method="post" enctype="multipart/form-data" class="d-flex flex-column">
+          {% csrf_token %}
+          <div class="col-12">
+            <div class="form-items">
+              <div class="row d-flex align-items-center">
+                <div class="col-lg-3">
+                  {{ form.name.label }}
+                </div>
+                <div class="col-lg-6">
+                  {% render_field form.name class="form-control" placeholder="Введите название"%}
+                </div>
+                <div class="col-lg-3 register-error">
+                  {{ form.name.errors}}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-items">
+              <div class="row d-flex align-items-center">
+                <div class="col-lg-3">
+                  {{ form.image.label }}
+                </div>
+                <div class="col-lg-6">
+                  {% render_field form.image class="form-control"%}
+                </div>
+                <div class="col-lg-3 register-error">
+                  {{ form.image.errors}}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-items">
+              <div class="row d-flex align-items-center">
+                <div class="col-lg-3">
+                  {{ form.description.label }}
+                </div>
+                <div class="col-lg-6">
+                  {% render_field form.description class="form-control" placeholder="Введите описание"%}
+                </div>
+                <div class="col-lg-3 register-error">
+                  {{ form.description.errors}}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <input
+                class="btn w-auto btn main-btn my-4"
+                type="submit"
+                value="Отправить"
+                />
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock content %}

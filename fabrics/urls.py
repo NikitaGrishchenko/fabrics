@@ -10,6 +10,7 @@ urlpatterns = ([
     path("accounts/", include("django.contrib.auth.urls")),
     path('user/', include('user.urls'), name="users"),
     path('cloth/', include('cloth.urls'), name="cloth"),
+    path('showroom/', include('showroom.urls'), name="showroom"),
     path("map/", MapView.as_view(), name="map"),
     path("", HomeView.as_view(), name="home"),
 

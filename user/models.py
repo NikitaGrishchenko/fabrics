@@ -32,7 +32,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     )
     first_name = models.CharField(_("Имя"), max_length=30)
     last_name = models.CharField(_("Фамилия"), max_length=150)
-    patronymic = models.CharField(_("Отчество"), max_length=150)
+    patronymic = models.CharField(_("Отчество"), max_length=150, blank=True, null=True)
     email = models.EmailField(_("Электронная почта"))
     phone = models.CharField(_("Номер телефона"), max_length=25)
     is_staff = models.BooleanField(

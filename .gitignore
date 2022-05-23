@@ -8,5 +8,6 @@ env/
 **/*.py[cod]
 
 /media
+/public
 
 db.sqlite3

@@ -4,9 +4,9 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
-PUBLIC_STATIC_DIR = os.path.join(BASE_DIR, "public-static")
 PUBLIC_MEDIA_DIR = os.path.join(BASE_DIR, "media")
-STATIC_ROOT = PUBLIC_STATIC_DIR
+PUBLIC_FOLDER = os.path.join(BASE_DIR, "public")
+STATIC_ROOT = os.path.join(PUBLIC_FOLDER, "static")
 STATIC_DIR = os.path.join(BASE_DIR, "static")
 
 

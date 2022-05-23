@@ -26,5 +26,10 @@ sudo systemctl restart nginx
 sudo systemctl restart gunicorn
 
 
+DEBUG = False
+
+ALLOWED_HOSTS = ['89.108.102.37','localhost']
+
+
 
 ```

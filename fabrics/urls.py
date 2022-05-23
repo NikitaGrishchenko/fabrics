@@ -14,5 +14,6 @@ urlpatterns = ([
     path("map/", MapView.as_view(), name="map"),
     path("", HomeView.as_view(), name="home"),
 
-]) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
++ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+)

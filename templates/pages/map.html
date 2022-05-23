@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static cloth %}
+
+{% block title %}
+  Карта поставщиков
+{% endblock title %}
+
+{% block header %}
+  {% include 'include/header.html' %}
+{% endblock header %}
+
+{% block content %}
+  <section class="map">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 my-4">
+          <h1>Карта поставщиков</h1>
+        </div>
+        {% if config.THE_MAP == '' %}
+          <div class="col-12">
+            <h3>
+              Карта не добавлена
+            </h3>
+          </div>
+        {% else %}
+          <div class="col-12 col-md-8 offset-md-2">
+            {{config.THE_MAP | safe}}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+{% endblock content %}
+
+
+

@@ -18,6 +18,8 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -28,10 +30,18 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'widget_tweaks',
     'django_filters',
+    'constance.backends.database',
+    'constance',
     'user',
     'cloth',
     'showroom',
+
 ]
+
+
+CONSTANCE_CONFIG = {
+    'THE_MAP': ('', 'Код Iframe яндекс карты поставщиков'),
+}
 
 
 
